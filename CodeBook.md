@@ -10,6 +10,50 @@ The Original data used for this project:
 
   https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
+Files and Variables in the the original data:
+
+- 'README.txt'
+
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+
+- 'features.txt': List of all features.
+
+- 'activity_labels.txt': Links the class labels with their activity name.
+
+- 'train/X_train.txt': Training set.
+
+- 'train/y_train.txt': Training labels.
+
+- 'test/X_test.txt': Test set.
+
+- 'test/y_test.txt': Test labels.
+
+The following files are available for the train and test data. Their descriptions are equivalent. 
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to
+   30.
+
+- 'train/Inertial Signals/total_acc_x_train.txt': The acceleration signal from the smartphone accelerometer X axis in standard gravity
+   units 'g'. Every row shows a 128 element vector. The same description applies for the 'total_acc_x_train.txt' and
+   total_acc_z_train.txt' files for the Y and Z axis. 
+
+- 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total
+   acceleration. 
+
+- 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample.
+   The units are radians/second.
+
+    Variables used in R that corresponds to the data in the above files:
+
+           x_train;
+           y_train;
+           subject_train;
+           x_test;
+           y_test;
+           subject_test;
+           features;
+           activity_labels.
+
 Project and Code steps:
 
   0. Download and unzip the dataset;
@@ -148,14 +192,13 @@ R Script:
         activityLabels 
         # The below observations are according to what is described in the file "README.txt".
 
-    V1                 V2
-  1  1            WALKING
-  2  2   WALKING_UPSTAIRS
-  3  3 WALKING_DOWNSTAIRS
-  4  4            SITTING
-  5  5           STANDING
-  6  6             LAYING
-
+        V1                 V2
+      1  1            WALKING
+      2  2   WALKING_UPSTAIRS
+      3  3 WALKING_DOWNSTAIRS
+      4  4            SITTING
+      5  5           STANDING
+      6  6             LAYING
 
 
     1.6. Assign columns names:
@@ -340,7 +383,7 @@ R Script:
 
 
     5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and 
-    each subject.
+       each subject.
 
         5.1. Create the second tidy data set:
 
@@ -350,4 +393,5 @@ R Script:
         
         5.2. Write the second tidy data set into a TXT file:
 
-        write.table(secTidyData, "secTidyData.txt", row.name=FALSE) # Writes the file secTidyData.txt into the working directory.
+        write.table(secTidyData, "secTidyData.txt", row.name=FALSE) 
+        # Writes the file secTidyData.txt into the working directory.
