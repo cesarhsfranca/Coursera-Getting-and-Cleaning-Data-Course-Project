@@ -10,6 +10,7 @@ The Original data used for this project:
 
   https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
+Project and Code steps:
 
   0. Download and unzip the dataset;
 
@@ -24,6 +25,7 @@ The Original data used for this project:
   5. From the data set in step 4, creates a second, independent tidy data set with the average
      of each variable for each activity and each subject.
  
+R Script:
  
   0. Downloading and unzipping dataset
 
@@ -61,16 +63,14 @@ The Original data used for this project:
 
          unzip(zipfile="./WearableComputing/Dataset.zip",exdir="./WearableComputing")
 
-    0.8. List once more the content of the directory WearableComputing in order to check that its content now also have the unzipped file.
+    0.8. List once more the content of the directory WearableComputing in order to check that its content now also have the unzipped              file.
  
          list.files("./WearableComputing") # Content of directory WearableComputing are: [1] "Dataset.zip"     "UCI HAR Dataset"
  
  
- 
- 
   1. Merges the training and the test sets to create one data set:
      Note: The read.table function reads a file(in the case of this project: x_train.txt, y_train.txt, subject_train.txt, x_test.txt,
-           y_test.txt, subject_test.txt, features.txt and activity_labels.txt) in table format and creates a data frame from it, with cases
+           y_test.txt, subject_test.txt, features.txt and activity_labels.txt) in table format and creates a data frame from it, with              cases
            corresponding to lines and variables to fields in the file.
  
            The content of the below files are assigned to its respective files into R:
@@ -91,23 +91,20 @@ The Original data used for this project:
         1.1.0. Assign the training data set to the file "x_train";
                Note: It makes sense that the data set are aligned to the x axis.
  
-               x_train <- read.table("./WearableComputing/UCI HAR Dataset/train/X_train.txt", header = FALSE) # The file "x_train.txt" contains
-                                                                                                the trainning data set;
-                                                                                                (7352 observations of 561 variables).
+               x_train <- read.table("./WearableComputing/UCI HAR Dataset/train/X_train.txt", header = FALSE) 
+               # The file "x_train.txt" contains the trainning data set; (7352 observations of 561 variables).
  
         1.1.1. Assign the training data labels to the file "y_train"; 
                Note: It makes sense that the labels are aligned to the y axis.
 
-               y_train <- read.table("./WearableComputing/UCI HAR Dataset/train/y_train.txt", header = FALSE) # The file "y_train.txt" contains
-                                                                                                the trainning data labels;
-                                                                                                (7352 observations of 1 variable).
+               y_train <- read.table("./WearableComputing/UCI HAR Dataset/train/y_train.txt", header = FALSE) 
+               # The file "y_train.txt" contains the trainning data labels; (7352 observations of 1 variable).
 
-        1.1.2. Assign the subject data trainning file, with data of who performed the activity for each window sample.(70% of all subjects).
-               Its range is from 1 to 30, to the file "subject_train"
+        1.1.2. Assign the subject data trainning file, with data of who performed the activity for each window sample.
+               (70% of all subjects). Its range is from 1 to 30, to the file "subject_train"
 
-               subject_train <- read.table("./WearableComputing/UCI HAR Dataset/train/subject_train.txt", header = FALSE) # (7352 observations of 1 variable).
-
-
+               subject_train <- read.table("./WearableComputing/UCI HAR Dataset/train/subject_train.txt", header = FALSE) 
+               # (7352 observations of 1 variable).
 
               
     1.2. Read test tables:
@@ -115,38 +112,41 @@ The Original data used for this project:
         1.2.0. Assign the testing data set to the file "x_test";
                Note: It makes sense that the test set are aligned to the x axis.
  
-                x_test <- read.table("./WearableComputing/UCI HAR Dataset/test/X_test.txt", header = FALSE) # (2947 observations of 561 variables).
+                x_test <- read.table("./WearableComputing/UCI HAR Dataset/test/X_test.txt", header = FALSE) 
+                # (2947 observations of 561 variables).
  
  
         1.2.1. Assign the testing data labels to the file "y_test";
                Note: It makes sense that the test labels are aligned to the y axis.
 
-                y_test <- read.table("./WearableComputing/UCI HAR Dataset/test/y_test.txt", header = FALSE) # (2947 observations of 1 variable).
+                y_test <- read.table("./WearableComputing/UCI HAR Dataset/test/y_test.txt", header = FALSE) 
+                # (2947 observations of 1 variable).
 
 
 
         1.2.2. Assign the subject data test file, with data of who performed the activity for each window sample.(30% of all subjects).
 
-                subject_test <- read.table("./WearableComputing/UCI HAR Dataset/test/subject_test.txt") # (2947 observations of 1 variable).
-
-
-
+                subject_test <- read.table("./WearableComputing/UCI HAR Dataset/test/subject_test.txt") 
+                # (2947 observations of 1 variable).
 
 
     1.3. Read the feature vector:
 
 
-        features <- read.table('./WearableComputing/UCI HAR Dataset/features.txt', header = FALSE) # (561 observations of 2 variables).
+        features <- read.table('./WearableComputing/UCI HAR Dataset/features.txt', header = FALSE) 
+        # (561 observations of 2 variables).
 
 
     1.4. Reading activity labels:
 
 
-        activityLabels = read.table('./WearableComputing/UCI HAR Dataset/activity_labels.txt', header = FALSE) # (6 observations of 2 variables).
+        activityLabels = read.table('./WearableComputing/UCI HAR Dataset/activity_labels.txt', header = FALSE) 
+        # (6 observations of 2 variables).
 
     1.5. Print activity labels:
 
-        activityLabels # The below observations are according to what is described in the file "README.txt".
+        activityLabels 
+        # The below observations are according to what is described in the file "README.txt".
 
     V1                 V2
   1  1            WALKING
@@ -161,16 +161,28 @@ The Original data used for this project:
     1.6. Assign columns names:
 
         
-        colnames(x_train) <- features[,2] # Assign the names of the 561 observations of the vector features, i.e., names in its column 2, as names of the 561 variables of x_train respectively.
-        colnames(y_train) <-"activityId"  # Assign the name activityID to the column of y_train.
-        colnames(subject_train) <- "subjectId" # Assign the name subjectID to the column of subject_train.
+        colnames(x_train) <- features[,2] 
+        # Assign the names of the 561 observations of the vector features, i.e., names in its column 2, as names of the 561 variables of
+        x_train respectively.
+        colnames(y_train) <-"activityId"  
+        # Assign the name activityID to the column of y_train.
+        colnames(subject_train) <- "subjectId" 
+        # Assign the name subjectID to the column of subject_train.
         
-        colnames(x_test) <- features[,2] # Assign the names of the 561 observations of the vector features, i.e., names in its column 2, as names of the 561 variables of x_test respectively.
-        colnames(y_test) <- "activityId" # Assign the name activityID to the column of y_test.
-        colnames(subject_test) <- "subjectId" # Assign the name subjectID to the column of subject_test.
-        activityLabels # Printing activityLabels before the next command line to show the names of its columns V1 and V2 respectively.
-        colnames(activityLabels) <- c('activityId','activityType') # Assign the names activityID and activityType to the two columns of activityLabels respectively.
-        activityLabels # Printing activityLabels after the above command line to show that now the names of its two columns are now activityID and activityType respectively.
+        colnames(x_test) <- features[,2] 
+        # Assign the names of the 561 observations of the vector features, i.e., names in its column 2, as names of the 561 variables of
+        x_test respectively.
+        colnames(y_test) <- "activityId" 
+        # Assign the name activityID to the column of y_test.
+        colnames(subject_test) <- "subjectId" 
+        # Assign the name subjectID to the column of subject_test.
+        activityLabels 
+        # Print activityLabels before the next command line to show the names of its columns V1 and V2 respectively.
+        colnames(activityLabels) <- c('activityId','activityType') 
+        # Assign the names activityID and activityType to the two columns of activityLabels respectively.
+        activityLabels 
+        # Printing activityLabels after the above command line to show that now the names of its two columns are now activityID and 
+        activityType respectively.
 
 
     1.7. Merge all the data in one data set:
@@ -291,7 +303,8 @@ The Original data used for this project:
         2.3. Making nessesary subset from mergedAlldata:
 
 
-        submergedAlldata <- mergedAlldata[ , mean_and_std == TRUE] # Assign a sub set of mergedAlldata for each element of mean_and_std equals TRUE.
+        submergedAlldata <- mergedAlldata[ , mean_and_std == TRUE] 
+        # Assign a sub set of mergedAlldata for each element of mean_and_std equals TRUE.
 
 
 
@@ -303,10 +316,7 @@ The Original data used for this project:
         descActivityNames
 
 
-
-
     4. Appropriately labels the data set with descriptive variable names.
-
 
        
         prefix t is replaced by time
@@ -324,14 +334,13 @@ The Original data used for this project:
         names(descActivityNames )<- gsub("Mag", "Magnitude", names(descActivityNames))
         names(descActivityNames) <- gsub("BodyBody", "Body", names(descActivityNames))
 
-
       
         names(descActivityNames)
 
 
 
-
-    5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+    5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and 
+    each subject.
 
         5.1. Create the second tidy data set:
 
