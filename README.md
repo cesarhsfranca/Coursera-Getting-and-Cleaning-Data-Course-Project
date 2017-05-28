@@ -13,7 +13,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 The dataset being used is: Human Activity Recognition Using Smartphones
 
-The script called run_analysis.R was created and tested using RStudio in which the code handle the data provided in order to produce a second tidy data set that can be used for later analysis as below briefly described:
+The script called run_analysis.R was created and tested using RStudio in which the code handle the data provided in order to produce a second tidy data set that can be used for later analysis. Please find below briefly described the followed sequence:
 
 0. Download and unzip the dataset;
 
