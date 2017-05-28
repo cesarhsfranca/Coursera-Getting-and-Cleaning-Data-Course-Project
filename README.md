@@ -15,8 +15,10 @@ The dataset being used is: Human Activity Recognition Using Smartphones
 
 The script called run_analysis.R was created and tested using RStudio in which the code handle the data provided in order to produce a second tidy data set that can be used for later analysis as below briefly described:
 
-0. 0. Download and unzip the dataset;
-Project activities required: Create one R script called run_analysis.R that does the following: 
+0. Download and unzip the dataset;
+
+   Project activities required: Create one R script called run_analysis.R that does the following: 
+   
 1. Merges the training and the test sets to create one data set;
 2. Extracts only the measurements on the mean and standard deviation for each measurement;
 3. Uses descriptive activity names to name the activities in the data set;
